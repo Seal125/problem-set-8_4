@@ -26,7 +26,9 @@ const Board = (props) => {
 
   function stepTo(step) {
     const boardInHistory = [...history];
-    setBoardState(boardInHistory[step]);
+    setBoardState(boardInHistory[step - 1] || []);
+    setHistory(boardInHistory[step - 1] || []);
+    setTurn((step % 2 === 0) ? 'X' : 'O');
   }
 
   const playerMoves = history.map((step, move) => {
